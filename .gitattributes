@@ -1,0 +1,6 @@
+# Force shell scripts to use LF (Unix) line endings in working tree
+*.sh text eol=lf
+
+# Force Docker-related files to use LF
+Dockerfile text eol=lf
+docker-compose.yml text eol=lf

@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-COPY pyproject.toml README.md ./
+COPY pyproject.toml README.md pytest.ini ruff.toml mypy.ini ./
 # Create stub package directories so pip editable install can resolve package-dir = {"": "src"}
 RUN mkdir -p src/config src/apps \
     && touch src/config/__init__.py src/apps/__init__.py

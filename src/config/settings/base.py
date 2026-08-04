@@ -1,4 +1,5 @@
 """Django settings compartidos entre dev y prod."""
+
 import os
 from pathlib import Path
 

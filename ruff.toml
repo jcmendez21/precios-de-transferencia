@@ -16,5 +16,5 @@ select = [
 ignore = ["E501"]  # line length handled by formatter
 
 [lint.per-file-ignores]
-"tests/*" = ["N802", "N803"]  # tests pueden usar nombres largos
+"tests/*" = ["N802", "N803", "N806"]  # tests pueden usar nombres largos y convenciones Django (User = get_user_model())
 "**/migrations/*" = ["ALL"]

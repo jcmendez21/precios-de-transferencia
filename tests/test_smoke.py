@@ -2,7 +2,6 @@
 
 import pytest
 
-
 # test_home_returns_200 removed in Task 8: home now requires login.
 # Covered precisely by tests/test_auth.py::test_home_redirects_anonymous_to_login.
 

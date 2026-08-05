@@ -1,4 +1,5 @@
 """Tests del management command seed_roles."""
+
 import pytest
 from django.contrib.auth.models import Group
 from django.core.management import call_command

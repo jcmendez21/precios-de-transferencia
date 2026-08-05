@@ -1,6 +1,6 @@
 """Tests de autenticación."""
+
 import pytest
-from django.urls import reverse
 
 
 @pytest.mark.django_db
@@ -13,6 +13,7 @@ def test_home_redirects_anonymous_to_login(anonymous_client):
 @pytest.mark.django_db
 def test_authenticated_user_can_see_home(client):
     from tests.factories import UsuarioFactory
+
     user = UsuarioFactory()
     user.set_password("test1234")
     user.save()

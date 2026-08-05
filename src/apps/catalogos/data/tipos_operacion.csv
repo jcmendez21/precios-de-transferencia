@@ -1,0 +1,13 @@
+codigo,nombre,seccion
+21,Venta de servicios,ingreso
+22,Comisiones,ingreso
+23,Intereses recibidos,ingreso
+24,Regalías recibidas,ingreso
+31,Compra de servicios,egreso
+32,Pago de comisiones,egreso
+33,Intereses pagados,egreso
+34,Regalías pagadas,egreso
+41,Compra de activos fijos,activo
+42,Adquisición de intangibles,activo
+51,Préstamos recibidos,pasivo
+52,Préstamos otorgados,activo

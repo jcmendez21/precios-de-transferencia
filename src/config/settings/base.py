@@ -18,7 +18,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # Third-party (se agregarán en tareas posteriores)
-    # Apps propias (se agregarán en tareas posteriores)
+    # Apps propias
+    "apps.core",
 ]
 
 MIDDLEWARE = [
@@ -75,3 +76,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SITE_ID = 1
+
+AUTH_USER_MODEL = "core.Usuario"

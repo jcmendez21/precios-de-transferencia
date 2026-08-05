@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # Third-party
+    "django_q",
     "allauth",
     "allauth.account",
     "simple_history",
@@ -96,3 +97,16 @@ ACCOUNT_LOGIN_METHODS = {"username", "email"}
 ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = "none"  # MVP: login local sin verify email
 ACCOUNT_SESSION_REMEMBER = True
+
+Q_CLUSTER = {
+    "name": "ptdocs",
+    "workers": 2,
+    "recycle": 500,
+    "timeout": 300,
+    "compress": True,
+    "save_limit": 250,
+    "queue_limit": 500,
+    "cpu_affinity": 1,
+    "label": "Django Q",
+    "redis": os.environ.get("REDIS_URL", "redis://redis:6379/0"),
+}

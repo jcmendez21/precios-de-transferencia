@@ -40,6 +40,23 @@ services:
         condition: service_started
     command: python manage.py runserver 0.0.0.0:8000
 
+  worker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    env_file:
+      - ../.env
+    environment:
+      POSTGRES_HOST: db
+    volumes:
+      - ../src:/app/src
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    command: python manage.py qcluster
+
 volumes:
   postgres_data:
   redis_data:

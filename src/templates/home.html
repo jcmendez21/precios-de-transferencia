@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white shadow rounded-lg p-8">
+    <h1 class="text-3xl font-bold mb-2">PT-Docs</h1>
+    <p class="text-gray-600">Sprint 0 activo — Bienvenido {{ user.get_full_name|default:user.username }}.</p>
+    <p class="mt-4 text-sm text-gray-500">
+        Rol: {% if user.perfil %}{{ user.perfil.get_rol_display }}{% else %}sin perfil{% endif %}
+    </p>
+</div>
+{% endblock %}

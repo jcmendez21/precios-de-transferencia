@@ -3,10 +3,8 @@
 import pytest
 
 
-def test_home_returns_200(anonymous_client):
-    response = anonymous_client.get("/")
-    assert response.status_code == 200
-    assert b"PT-Docs" in response.content
+# test_home_returns_200 removed in Task 8: home now requires login.
+# Covered precisely by tests/test_auth.py::test_home_redirects_anonymous_to_login.
 
 
 @pytest.mark.django_db

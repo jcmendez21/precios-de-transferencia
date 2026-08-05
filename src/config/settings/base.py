@@ -17,7 +17,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    # Third-party (se agregarán en tareas posteriores)
+    # Third-party
+    "allauth",
+    "allauth.account",
     # Apps propias
     "apps.core",
 ]
@@ -31,6 +33,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -78,3 +81,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SITE_ID = 1
 
 AUTH_USER_MODEL = "core.Usuario"
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGIN_METHODS = {"username", "email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
+ACCOUNT_EMAIL_VERIFICATION = "none"  # MVP: login local sin verify email
+ACCOUNT_SESSION_REMEMBER = True

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load allauth %}
+{% block title %}Iniciar sesión — PT-Docs{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white shadow rounded-lg p-8">
+    <h1 class="text-2xl font-bold mb-6">Iniciar sesión</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+            Entrar
+        </button>
+    </form>
+</div>
+{% endblock %}

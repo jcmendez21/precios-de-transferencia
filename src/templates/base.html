@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es-co">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PT-Docs{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.14.0/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+    <nav class="bg-white border-b border-gray-200 px-6 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-xl font-semibold">PT-Docs</a>
+            {% if user.is_authenticated %}
+                <div class="text-sm">
+                    <span class="mr-3">{{ user.username }}</span>
+                    <a href="{% url 'account_logout' %}" class="text-blue-600 hover:underline">Salir</a>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-6 py-8">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

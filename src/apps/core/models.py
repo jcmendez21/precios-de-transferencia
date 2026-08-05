@@ -1,6 +1,7 @@
 """Modelos base: Firma, Usuario, PerfilUsuario."""
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from simple_history.models import HistoricalRecords
 
 from apps.core.mixins import TimestampedModel
 
@@ -11,6 +12,7 @@ class Firma(TimestampedModel):
     nombre = models.CharField(max_length=200, unique=True, verbose_name="Nombre")
     nit = models.CharField(max_length=20, unique=True, verbose_name="NIT")
     activa = models.BooleanField(default=True, verbose_name="Activa")
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = "Firma"
@@ -31,6 +33,7 @@ class Usuario(AbstractUser):
         blank=True,
         verbose_name="Firma",
     )
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = "Usuario"
@@ -59,6 +62,7 @@ class PerfilUsuario(TimestampedModel):
         default=RolUsuario.JUNIOR,
         verbose_name="Rol",
     )
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = "Perfil de usuario"

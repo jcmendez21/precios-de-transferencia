@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,78 +14,167 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='PaisDIAN',
+            name="PaisDIAN",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('codigo_dian', models.CharField(max_length=5, unique=True, verbose_name='Código DIAN')),
-                ('nombre', models.CharField(max_length=100, verbose_name='Nombre')),
-                ('codigo_iso', models.CharField(blank=True, max_length=3, verbose_name='Código ISO')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                    ),
+                ),
+                (
+                    "codigo_dian",
+                    models.CharField(max_length=5, unique=True, verbose_name="Código DIAN"),
+                ),
+                ("nombre", models.CharField(max_length=100, verbose_name="Nombre")),
+                (
+                    "codigo_iso",
+                    models.CharField(blank=True, max_length=3, verbose_name="Código ISO"),
+                ),
             ],
             options={
-                'verbose_name': 'País DIAN',
-                'verbose_name_plural': 'Países DIAN',
-                'ordering': ('nombre',),
+                "verbose_name": "País DIAN",
+                "verbose_name_plural": "Países DIAN",
+                "ordering": ("nombre",),
             },
         ),
         migrations.CreateModel(
-            name='ParametroFiscal',
+            name="ParametroFiscal",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('anio', models.PositiveIntegerField(unique=True, verbose_name='Año gravable')),
-                ('uvt', models.PositiveIntegerField(verbose_name='Valor UVT (COP)')),
-                ('tasa_referencia', models.DecimalField(blank=True, decimal_places=4, max_digits=6, null=True, verbose_name='Tasa de referencia (%)')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                    ),
+                ),
+                ("anio", models.PositiveIntegerField(unique=True, verbose_name="Año gravable")),
+                ("uvt", models.PositiveIntegerField(verbose_name="Valor UVT (COP)")),
+                (
+                    "tasa_referencia",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=4,
+                        max_digits=6,
+                        null=True,
+                        verbose_name="Tasa de referencia (%)",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Parámetro fiscal',
-                'verbose_name_plural': 'Parámetros fiscales',
-                'ordering': ('-anio',),
+                "verbose_name": "Parámetro fiscal",
+                "verbose_name_plural": "Parámetros fiscales",
+                "ordering": ("-anio",),
             },
         ),
         migrations.CreateModel(
-            name='SectorEconomico',
+            name="SectorEconomico",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('codigo_ciiu', models.CharField(max_length=6, unique=True, verbose_name='Código CIIU')),
-                ('nombre', models.CharField(max_length=200, verbose_name='Nombre')),
-                ('division', models.CharField(blank=True, max_length=100, verbose_name='División')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                    ),
+                ),
+                (
+                    "codigo_ciiu",
+                    models.CharField(max_length=6, unique=True, verbose_name="Código CIIU"),
+                ),
+                ("nombre", models.CharField(max_length=200, verbose_name="Nombre")),
+                ("division", models.CharField(blank=True, max_length=100, verbose_name="División")),
             ],
             options={
-                'verbose_name': 'Sector económico (CIIU)',
-                'verbose_name_plural': 'Sectores económicos (CIIU)',
-                'ordering': ('codigo_ciiu',),
+                "verbose_name": "Sector económico (CIIU)",
+                "verbose_name_plural": "Sectores económicos (CIIU)",
+                "ordering": ("codigo_ciiu",),
             },
         ),
         migrations.CreateModel(
-            name='TipoOperacionDIAN',
+            name="TipoOperacionDIAN",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('codigo', models.CharField(max_length=10, unique=True, verbose_name='Código DIAN')),
-                ('nombre', models.CharField(max_length=200, verbose_name='Nombre')),
-                ('seccion', models.CharField(choices=[('ingreso', 'Operación de ingreso'), ('egreso', 'Operación de egreso'), ('activo', 'Operación con activos'), ('pasivo', 'Operación con pasivos')], max_length=10, verbose_name='Sección')),
-                ('activa', models.BooleanField(default=True, verbose_name='Activa')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                    ),
+                ),
+                (
+                    "codigo",
+                    models.CharField(max_length=10, unique=True, verbose_name="Código DIAN"),
+                ),
+                ("nombre", models.CharField(max_length=200, verbose_name="Nombre")),
+                (
+                    "seccion",
+                    models.CharField(
+                        choices=[
+                            ("ingreso", "Operación de ingreso"),
+                            ("egreso", "Operación de egreso"),
+                            ("activo", "Operación con activos"),
+                            ("pasivo", "Operación con pasivos"),
+                        ],
+                        max_length=10,
+                        verbose_name="Sección",
+                    ),
+                ),
+                ("activa", models.BooleanField(default=True, verbose_name="Activa")),
             ],
             options={
-                'verbose_name': 'Tipo de operación DIAN',
-                'verbose_name_plural': 'Tipos de operación DIAN',
-                'ordering': ('codigo',),
+                "verbose_name": "Tipo de operación DIAN",
+                "verbose_name_plural": "Tipos de operación DIAN",
+                "ordering": ("codigo",),
             },
         ),
         migrations.CreateModel(
-            name='ParaisoFiscal',
+            name="ParaisoFiscal",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Creado en')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Actualizado en')),
-                ('fecha_inclusion', models.DateField(blank=True, null=True, verbose_name='Fecha inclusión')),
-                ('activo', models.BooleanField(default=True, verbose_name='Activo')),
-                ('notas', models.TextField(blank=True, verbose_name='Notas')),
-                ('created_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL, verbose_name='Creado por')),
-                ('pais', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, related_name='paraiso_fiscal', to='catalogos.paisdian', verbose_name='País')),
-                ('updated_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL, verbose_name='Actualizado por')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True, verbose_name="Creado en")),
+                ("updated_at", models.DateTimeField(auto_now=True, verbose_name="Actualizado en")),
+                (
+                    "fecha_inclusion",
+                    models.DateField(blank=True, null=True, verbose_name="Fecha inclusión"),
+                ),
+                ("activo", models.BooleanField(default=True, verbose_name="Activo")),
+                ("notas", models.TextField(blank=True, verbose_name="Notas")),
+                (
+                    "created_by",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Creado por",
+                    ),
+                ),
+                (
+                    "pais",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="paraiso_fiscal",
+                        to="catalogos.paisdian",
+                        verbose_name="País",
+                    ),
+                ),
+                (
+                    "updated_by",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Actualizado por",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Paraíso fiscal',
-                'verbose_name_plural': 'Paraísos fiscales',
+                "verbose_name": "Paraíso fiscal",
+                "verbose_name_plural": "Paraísos fiscales",
             },
         ),
     ]

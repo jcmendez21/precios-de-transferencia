@@ -1,4 +1,7 @@
 """Admin de la app core."""
+
+from typing import Any
+
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
@@ -12,16 +15,24 @@ class FirmaAdmin(admin.ModelAdmin):
     list_filter = ("activa",)
 
 
+def _get_fieldsets() -> Any:
+    """Get fieldsets with Firma field added."""
+    base = UserAdmin.fieldsets or ()
+    return (*base, ("Firma", {"fields": ("firma",)}))
+
+
+def _get_add_fieldsets() -> Any:
+    """Get add_fieldsets with Firma field added."""
+    base = UserAdmin.add_fieldsets or ()
+    return (*base, ("Firma", {"fields": ("firma",)}))
+
+
 @admin.register(Usuario)
 class UsuarioAdmin(UserAdmin):
     list_display = ("username", "email", "firma", "is_staff", "is_active")
     list_filter = ("firma", "is_staff", "is_active")
-    fieldsets = UserAdmin.fieldsets + (
-        ("Firma", {"fields": ("firma",)}),
-    )
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        ("Firma", {"fields": ("firma",)}),
-    )
+    fieldsets = _get_fieldsets()
+    add_fieldsets = _get_add_fieldsets()
 
 
 @admin.register(PerfilUsuario)

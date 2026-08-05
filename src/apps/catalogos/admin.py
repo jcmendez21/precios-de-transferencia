@@ -1,9 +1,10 @@
 """Admin de catalogos DIAN."""
+
 from django.contrib import admin
 
 from apps.catalogos.models import (
-    ParaisoFiscal,
     PaisDIAN,
+    ParaisoFiscal,
     ParametroFiscal,
     SectorEconomico,
     TipoOperacionDIAN,

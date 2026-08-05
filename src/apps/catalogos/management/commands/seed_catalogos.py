@@ -1,4 +1,5 @@
 """Carga los catálogos DIAN desde archivos CSV embebidos."""
+
 import csv
 from datetime import date
 from decimal import Decimal
@@ -7,8 +8,8 @@ from pathlib import Path
 from django.core.management.base import BaseCommand
 
 from apps.catalogos.models import (
-    ParaisoFiscal,
     PaisDIAN,
+    ParaisoFiscal,
     ParametroFiscal,
     SectorEconomico,
     TipoOperacionDIAN,
@@ -48,15 +49,18 @@ class Command(BaseCommand):
                 try:
                     pais = PaisDIAN.objects.get(codigo_dian=row["codigo_pais_dian"])
                 except PaisDIAN.DoesNotExist:
-                    self.stdout.write(self.style.WARNING(
-                        f"  · País {row['codigo_pais_dian']} no encontrado, saltando paraíso."
-                    ))
+                    self.stdout.write(
+                        self.style.WARNING(
+                            f"  · País {row['codigo_pais_dian']} no encontrado, saltando paraíso."
+                        )
+                    )
                     continue
                 ParaisoFiscal.objects.update_or_create(
                     pais=pais,
                     defaults={
                         "fecha_inclusion": date.fromisoformat(row["fecha_inclusion"])
-                            if row["fecha_inclusion"] else None,
+                        if row["fecha_inclusion"]
+                        else None,
                         "notas": row.get("notas", ""),
                         "activo": True,
                     },
@@ -99,7 +103,8 @@ class Command(BaseCommand):
                     defaults={
                         "uvt": int(row["uvt"]),
                         "tasa_referencia": Decimal(row["tasa_referencia"])
-                            if row["tasa_referencia"] else None,
+                        if row["tasa_referencia"]
+                        else None,
                     },
                 )
         self.stdout.write(f"  · Parámetros fiscales: {ParametroFiscal.objects.count()}")

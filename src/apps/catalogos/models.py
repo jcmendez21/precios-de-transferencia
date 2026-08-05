@@ -1,4 +1,5 @@
 """Catálogos oficiales DIAN."""
+
 from django.db import models
 
 from apps.core.mixins import TimestampedModel
@@ -91,7 +92,10 @@ class ParametroFiscal(models.Model):
     anio = models.PositiveIntegerField(unique=True, verbose_name="Año gravable")
     uvt = models.PositiveIntegerField(verbose_name="Valor UVT (COP)")
     tasa_referencia = models.DecimalField(
-        max_digits=6, decimal_places=4, null=True, blank=True,
+        max_digits=6,
+        decimal_places=4,
+        null=True,
+        blank=True,
         verbose_name="Tasa de referencia (%)",
     )
 
